@@ -5,7 +5,8 @@
       document = window.document,
       defaults = {
         checkboxWrapper: ".checkboxes", 
-        checkFiltered: true
+        checkFiltered: true, 
+        caseSensitive: false
       };
 
   // The actual plugin constructor
@@ -25,14 +26,17 @@
     var self = this;
 
     $(this.element).keyup(function () {
-      var text_value = $(self.element).val();                   // Texbox value
+      var text_value = $(self.element).val();
       
       $(self.options.checkboxWrapper).find('input:checkbox').each(function () {
-          // Essentially a case insensitive 'string.contains' against the 
-          // checkboxes parent label text
-          var $label = $(this).closest('label'),                // the parent label
-              label_text = $label.text().toLowerCase(),         // label text in lowercase
+          var $label = $(this).closest('label'), 
+              label_text = $label.text(), 
               checked = (label_text.indexOf(text_value) != -1); // true if label contains textbox value
+              
+          if (!caseSensitive) {
+            text_value = text_value.toLowerCase();
+            label_text = label_text.toLowerCase();
+          }
 
           // Set checked attribute
           if (self.options.checkFiltered) {
