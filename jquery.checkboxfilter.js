@@ -30,13 +30,15 @@
       
       $(self.options.checkboxWrapper).find('input:checkbox').each(function () {
           var $label = $(this).closest('label'), 
-              label_text = $label.text(), 
-              checked = (label_text.indexOf(text_value) != -1); // true if label contains textbox value
+              label_text = $label.text(),
+              checked;
               
           if (!self.options.caseSensitive) {
             text_value = text_value.toLowerCase();
             label_text = label_text.toLowerCase();
           }
+          
+          checked = (label_text.indexOf(text_value) != -1); // true if label contains textbox value
 
           // Set checked attribute
           if (self.options.checkFiltered) {
