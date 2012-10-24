@@ -33,7 +33,7 @@
               label_text = $label.text(), 
               checked = (label_text.indexOf(text_value) != -1); // true if label contains textbox value
               
-          if (!caseSensitive) {
+          if (!self.options.caseSensitive) {
             text_value = text_value.toLowerCase();
             label_text = label_text.toLowerCase();
           }
