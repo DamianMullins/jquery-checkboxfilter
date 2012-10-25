@@ -4,8 +4,10 @@
   var pluginName = 'CheckboxFilter',
       document = window.document,
       defaults = {
-        checkboxWrapper: ".checkboxes", 
-        checkFiltered: true, 
+        checkbox: {
+          toggleChecked: true
+        },
+        labelWrapper: ".label-wrapper", 
         caseSensitive: false
       };
 
@@ -28,24 +30,24 @@
     $(this.element).keyup(function () {
       var text_value = $(self.element).val();
       
-      $(self.options.checkboxWrapper).find('input:checkbox').each(function () {
-          var $label = $(this).closest('label'), 
-              label_text = $label.text(),
-              checked;
+      $(self.options.labelWrapper).find('label').each(function () {
+          var label_text = $(this).text(),
+              $input_element = $(this).find('input:first'),
+              matched;
               
           if (!self.options.caseSensitive) {
             text_value = text_value.toLowerCase();
             label_text = label_text.toLowerCase();
           }
           
-          checked = (label_text.indexOf(text_value) != -1); // true if label contains textbox value
+          matched = (label_text.indexOf(text_value) >= 0); // true if label contains textbox value
 
           // Set checked attribute
-          if (self.options.checkFiltered) {
-            $(this).attr('checked', checked);
+          if ($input_element.is(':checkbox') && self.options.checkbox.toggleChecked) {
+            $input_element.attr('checked', matched);
           }
           // Hide any filters which have not been matched
-          $label.css('display', (checked ? 'block' : 'none'));
+          $(this).css('display', (matched ? 'block' : 'none'));
       });
       
     });
