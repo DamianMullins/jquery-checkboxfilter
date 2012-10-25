@@ -30,7 +30,12 @@
     <script src="https://raw.github.com/DamianMullins/jquery-checkboxfilter/master/jquery.checkboxfilter.js"></script>
     <script>
       $(function () {
-        $('.textbox').CheckboxFilter({checkFiltered: false});
+        $('.textbox').CheckboxFilter({
+          checkbox:{
+            toggleChecked: false
+          }, 
+          labelWrapper: '.checkboxes'
+        });
       });
     </script>
   </head>
@@ -54,22 +59,23 @@
         <h3>Try Me.</h3>
 
         <input type="text" class="textbox" placeholder="Type here">
+        
           <div class="checkboxes">
-              <label><input type="checkbox" value="283" />Western Europe</label>
+              <label><input type="checkbox" />Western Europe</label>
     
-              <label><input type="checkbox" value="284" />Eastern Europe</label>
+              <label><input type="checkbox" />Eastern Europe</label>
     
-              <label><input type="checkbox" value="285" />North America</label>
+              <label><input type="checkbox" />North America</label>
     
-              <label><input type="checkbox" value="302" />Selected Central America</label>
+              <label><input type="checkbox" />Selected Central America</label>
     
-              <label><input type="checkbox" value="286" />Selected South America</label>
+              <label><input type="checkbox" />Selected South America</label>
     
-              <label><input type="checkbox" value="287" />Asia Pacific</label>
+              <label><input type="checkbox" />Asia Pacific</label>
     
-              <label><input type="checkbox" value="280" />Selected Africa</label>
+              <label><input type="checkbox" />Selected Africa</label>
     
-              <label><input type="checkbox"value="298" />Selected Middle East</label>
+              <label><input type="checkbox" />Selected Middle East</label>
           </div>
       </section>
       <footer>
