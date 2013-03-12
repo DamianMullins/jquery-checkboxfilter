@@ -5,7 +5,8 @@
       document = window.document,
       defaults = {
         checkbox: {
-          toggleChecked: true
+          toggleChecked: true,
+          toggleVisibility: false
         },
         labelWrapper: ".label-wrapper", 
         caseSensitive: false
@@ -46,8 +47,11 @@
           if ($input_element.is(':checkbox') && self.options.checkbox.toggleChecked) {
             $input_element.attr('checked', matched);
           }
+          
           // Hide any filters which have not been matched
-          $(this).css('display', (matched ? 'block' : 'none'));
+          if (self.options.checkbox.toggleVisibility) {
+            $(this).css('display', (matched ? 'block' : 'none'));
+          }
       });
       
     });
