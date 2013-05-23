@@ -8,7 +8,7 @@
           toggleChecked: true,
           toggleVisibility: false
         },
-        labelWrapper: ".label-wrapper", 
+        labelWrapper: '.label-wrapper', 
         caseSensitive: false
       };
 
